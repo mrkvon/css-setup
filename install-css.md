@@ -29,7 +29,7 @@ No need to install, just run
 
 ```sh
 # run as [user]
-nvm exec 18 npx -y @solid/community-server -p [port]
+nvm exec 18 npx -y @solid/community-server@7 -p [port]
 ```
 
 ### Option 2 - npm
@@ -38,7 +38,7 @@ Install the package globally
 
 ```sh
 # run as [user] or root
-nvm exec 18 sudo npm install -g @solid/community-server
+nvm exec 18 sudo npm install -g @solid/community-server@7
 ```
 
 Run the server
@@ -67,5 +67,9 @@ nvm exec 18 npm ci
 # run the server
 nvm exec 18 npm start -- -p [port]
 ```
+
+---
+
+If you managed to run the CSS, you can stop it now with `Ctrl+C`.
 
 [Next: Set up nginx](setup-nginx.md)

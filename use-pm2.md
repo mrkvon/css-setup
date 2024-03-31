@@ -38,6 +38,10 @@ This command will output another command that you should execute. In my case it 
    ```sh
    #!/bin/bash
 
+   # Source the nvm initialization script
+   # this is a little tweak to make nvm available in the context of pm2
+   source /home/solidtest/.nvm/nvm.sh
+
    # put your favourite way to run CSS here, for example
    nvm exec 18 npx -y @solid/community-server@7 -f ./data/ -c ./config.json -p [port] -b https://[your.domain]
    ```
@@ -66,7 +70,7 @@ This command will output another command that you should execute. In my case it 
    # run as [user]
    cd ~/www/[projectname]
    # cd ~/www/[projectname]/CommunitySolidServer # if you run it from git repo
-   pm2 start run.sh --name [name-like-domain.example]
+   pm2 start run.sh --name [for-example-your.domain]
    ```
 1. Check that the server runs
 1. Persist the settings

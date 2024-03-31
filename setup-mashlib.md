@@ -96,6 +96,12 @@ Add the [following section](https://github.com/CommunitySolidServer/Recipes/blob
   ]
 ```
 
+Also replace `"css:config/app/init/static-root.json"` with `"css:config/app/init/default.json"`.
+
+Also remove `"css:config/util/index/default.json"`.
+
+The final config for multiple users may [look like this](config-mashlib.json).
+
 Restart the server and test it:
 
 ```sh

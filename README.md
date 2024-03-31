@@ -1,6 +1,8 @@
 # Running Community Solid Server with Debian, pm2, and nginx
 
-Here we document one possible way to set up Community Solid Server (CSS), including https and default app &mdash; Mashlib.
+Here we document one possible way to set up [Community Solid Server](https://github.com/CommunitySolidServer/CommunitySolidServer) (CSS), including https and default app &mdash; Mashlib.
+
+This instruction is for CSS v7 &mdash; latest version at the time of writing.
 
 Steps:
 
@@ -30,6 +32,11 @@ You'll need:
 ### Placeholders
 
 We mark placeholders `[placeholder]`. You should always replace them with your own string. For example replace `[port]` with `3456`. Whatever you choose instead of the placeholders, keep it consistent across this whole instruction.
+
+- `[user]` - linux user to run the CSS server
+- `[projectname]` - folder name in `[user]`'s home environment where we keep everything
+- `[port]` - port on which the CSS will run locally; no other application should run on the same port; choose 4 numbers like `3456`
+- `[your.domain]` - the domain on which the server is going to run
 
 ### Linux user
 

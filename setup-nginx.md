@@ -24,38 +24,38 @@ service nginx start
 #### Create config
 
 ```sh
-touch /etc/nginx/sites-available/[your-domain].conf
+touch /etc/nginx/sites-available/[your.domain].conf
 ```
 
 Fill it with the following
 
 Replace
 
-- `[solid.example.org]` &rArr; your domain name
-- `[solid-example-org]` &rArr; some unique identifier
+- `[your.domain]` &rArr; your domain name
+- `[some-identifier]` &rArr; some unique identifier
 - `[port]` &rArr; port number where CSS will run locally
 
-It's a configuration to run CSS over http. We'll use Certbot to change it into https setup.
+It's a configuration to run CSS over http. We'll use Certbot later to change it into https setup.
 
 ```nginx
 ###### Setup for Community Solid Server ######
 # https://solidproject.org/self-hosting/css/nginx
 
 # Your local Solid server instance
-upstream [solid-example-org] {
+upstream [some-identifier] {
   server 127.0.0.1:[port];
 }
 
 server {
-  server_name [solid.example.org];
+  server_name [your.domain];
   listen 80;
   listen [::]:80; # this is for IPv6
 
-  # Proxy traffic for https://[solid.example.org]/ to http://localhost:[port]/
+  # Proxy traffic for https://[your.domain]/ to http://localhost:[port]/
 
   location / {
     # Delegate to the Solid server, passing the original host and protocol
-    proxy_pass http://[solid-example-org]$request_uri;
+    proxy_pass http://[some-identifier]$request_uri;
     proxy_set_header X-Forwarded-Host  $host;
     proxy_set_header X-Forwarded-Proto $scheme;
 
@@ -80,7 +80,7 @@ Link your config to sites-enabled:
 
 ```sh
 cd /etc/nginx/sites-enabled
-ln -s /etc/nginx/sites-available/[your-domain].conf .
+ln -s /etc/nginx/sites-available/[your.domain].conf .
 ```
 
 This creates a symbolic link from sites-available to sites-enabled. If you later decide to deactivate the server, this will allow you to delete the symbolic link from sites-enabled, while keeping the config safe in sites-available for future reference
@@ -94,7 +94,7 @@ service nginx reload
 In other terminal, test-run the server on the `[port]`:
 
 ```sh
-npx -y @solid/community-server -p [port] -b http://[your.domain]
+nvm exec 18 npx -y @solid/community-server@7 -p [port] -b http://[your.domain]
 ```
 
 If you open `http://[your.domain]` in your browser, you should see the main page of Community Solid Server :tada:
@@ -115,31 +115,25 @@ Follow the [installation guide for Nginx and Debian at Certbot website](https://
 certbot --nginx
 ```
 
-This will install the LetsEncrypt certificate, and edit your nginx config accordingly.
+This will install the LetsEncrypt certificate, and edit your nginx config to support https.
 
-You can check that the final config file at `/etc/nginx/sites-available/[your.domain]`. It should look something like this:
-
-```nginx
-# TODO test and fill
-```
-
-##### Test https
-
-```sh
-npx -y @solid/community-server -p [port] -b https://[your.domain]
-```
-
-Open `[your.domain]` in your browser and see that the server is running with `https:` at the beginning
+You can check that the final config file at `/etc/nginx/sites-available/[your.domain].conf`. It will look [something like this]([your.domain].conf).
 
 Certbot will automatically renew the certificates before they expire, so you don't have to worry about it.
 
-Test it by running
+Test the renewal by running
 
 ```sh
 certbot renew --dry-run
 ```
 
-If it passes, you're all set. :tada:
+##### Test https
+
+```sh
+nvm exec 18 npx -y @solid/community-server@7 -p [port] -b https://[your.domain]
+```
+
+Open `[your.domain]` in your browser and see that the server is running with `https:` at the beginning
 
 You can stop the Community Solid Server in the other terminal with `Ctrl+C` for now. We'll set it up properly in next steps.
 

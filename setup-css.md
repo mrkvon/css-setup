@@ -109,6 +109,8 @@ Get rid of this:
     }
 ```
 
+---
+
 Now, the server is running. But when you reboot your VPS or the CSS server crashes, it will stop. We use pm2 to fix that.
 
 [Next: Run CSS with pm2](use-pm2.md)
