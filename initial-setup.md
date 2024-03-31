@@ -49,7 +49,7 @@ www/[projectname]/
 ├── CommunitySolidServer/ (only if you're running CSS from github repository)
 ├── data/
 ├── mashlib/
-├── pm2.sh
+├── run.sh
 └── config.json
 ```
 

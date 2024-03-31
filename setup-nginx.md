@@ -94,10 +94,12 @@ service nginx reload
 In other terminal, test-run the server on the `[port]`:
 
 ```sh
-npx -y @solid/community-server -p [port]
+npx -y @solid/community-server -p [port] -b http://[your.domain]
 ```
 
 If you open `http://[your.domain]` in your browser, you should see the main page of Community Solid Server :tada:
+
+Now, you can stop the CSS server in the other terminal with `Ctrl+C`
 
 #### Set up https with Certbot
 
@@ -118,10 +120,14 @@ This will install the LetsEncrypt certificate, and edit your nginx config accord
 You can check that the final config file at `/etc/nginx/sites-available/[your.domain]`. It should look something like this:
 
 ```nginx
-
+# TODO test and fill
 ```
 
 ##### Test https
+
+```sh
+npx -y @solid/community-server -p [port] -b https://[your.domain]
+```
 
 Open `[your.domain]` in your browser and see that the server is running with `https:` at the beginning
 

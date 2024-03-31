@@ -12,13 +12,13 @@ node -v
 
 If it's less than 18, use NVM to switch to v18 or later
 
-First [install NVM](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script)
+First [install NVM](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script).
 
-Install and switch to node v18 (or later)
+Install node v18 (or later)
 
-```
+```sh
+# run as [user]
 nvm install 18
-nvm use 18
 ```
 
 ## Install and test-run the server
@@ -29,7 +29,7 @@ No need to install, just run
 
 ```sh
 # run as [user]
-npx -y @solid/community-server -p 3456
+nvm exec 18 npx -y @solid/community-server -p [port]
 ```
 
 ### Option 2 - npm
@@ -38,14 +38,14 @@ Install the package globally
 
 ```sh
 # run as [user] or root
-sudo npm install -g @solid/community-server
+nvm exec 18 sudo npm install -g @solid/community-server
 ```
 
 Run the server
 
 ```sh
 # run as [user]
-community-solid-server -p 3456
+community-solid-server -p [port]
 ```
 
 ### Option 3 - github repository
@@ -63,9 +63,9 @@ git clone https://github.com/CommunitySolidServer/CommunitySolidServer.git
 # go to CSS folder
 cd CommunitySolidServer
 # install
-npm ci
+nvm exec 18 npm ci
 # run the server
-npm start -- -p 3456
+nvm exec 18 npm start -- -p [port]
 ```
 
 [Next: Set up nginx](setup-nginx.md)
